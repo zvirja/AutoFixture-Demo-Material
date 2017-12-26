@@ -12,7 +12,7 @@ namespace AutoFixtureDemo
 
     public class TestType
     {
-      public readonly bool WasInitializedFromConstructor = false;
+      public readonly bool WasInitializedFromVerboseConstructor = false;
       private readonly bool _checkIntValue = true;
 
       private int _intValue;
@@ -35,7 +35,7 @@ namespace AutoFixtureDemo
 
       public TestType(bool checkIntValue)
       {
-        WasInitializedFromConstructor = true;
+        WasInitializedFromVerboseConstructor = true;
         _checkIntValue = checkIntValue;
       }
     }
