@@ -52,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\IPasswordChecker.cs" />
     <Compile Include="Security\MembershipManager.cs" />
-    <Compile Include="Security\IPasswordHasher.cs" />
     <Compile Include="Security\IUserRepository.cs" />
     <Compile Include="Security\User.cs" />
   </ItemGroup>
