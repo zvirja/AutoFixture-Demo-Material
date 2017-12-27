@@ -47,7 +47,7 @@ namespace Application.UnitTests.Security
       sut.TryLogin(login, password);
 
       // Assert
-      log.Received().Audit(login, "Try to login.");
+      log.Received().Audit(login, "Trying to log in.");
     }
 
     [Theory, AutoNSubstituteData]

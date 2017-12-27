@@ -29,7 +29,7 @@ namespace Application.Security
       if (string.IsNullOrEmpty(login)) throw new ArgumentNullException(nameof(login));
       if (password == null) throw new ArgumentNullException(nameof(password));
 
-      _log.Audit(login, "Try to login.");
+      _log.Audit(login, "Trying to log in.");
 
       var user = _userRepo.GetExistingUser(login);
       if (user != null && _passwordChecker.IsPasswordValid(password, user))
