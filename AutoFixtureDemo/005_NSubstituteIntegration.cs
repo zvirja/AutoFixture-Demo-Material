@@ -15,7 +15,12 @@ namespace AutoFixtureDemo
   {
     public class ValueSource
     {
-      public string Value { get; set; }
+      public virtual string Value { get; }
+
+      public ValueSource(string value)
+      {
+        this.Value = value;
+      }
     }
 
     public interface IValueRepository
@@ -65,6 +70,21 @@ namespace AutoFixtureDemo
       Assert.NotNull(valueSource);
     }
 
+
+    #endregion
+
+    #region Substitute attribute
+
+    /* To demo:
+     * 1. Combined with frozen 
+     */
+    [Theory, AutoNSubstituteData]
+    public void ShouldCreateSubstitute([Substitute] ValueSource value)
+    {
+      value.Value.Returns("foo");
+
+      Assert.Equal("foo", value.Value);
+    }
 
     #endregion
 

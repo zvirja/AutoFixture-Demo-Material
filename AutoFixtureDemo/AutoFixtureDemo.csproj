@@ -73,7 +73,7 @@
   <ItemGroup>
     <Compile Include="001_Primitives.cs" />
     <Compile Include="002_CustomTypes.cs" />
-    <Compile Include="903_Customizations.cs" />
+    <Compile Include="XXX_Customizations.cs" />
     <Compile Include="003_FreezeInject.cs" />
     <Compile Include="005_NSubstituteIntegration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using AutoFixture;
 using Xunit;
 
@@ -8,8 +6,6 @@ namespace AutoFixtureDemo
 {
   public class Customizations
   {
-    #region Simple customization demo
-
     public class TestType
     {
       public readonly bool WasInitializedFromVerboseConstructor = false;
@@ -25,9 +21,6 @@ namespace AutoFixtureDemo
           _intValue = value;
         }
       }
-
-      public string StrValue { get; set; }
-      public object ObjValue { get; set; }
 
       public TestType()
       {
@@ -64,8 +57,5 @@ namespace AutoFixtureDemo
 
       // var result2 = fixture.Create<TestType>();
     }
-
-    #endregion
-
   }
 }
