@@ -10,11 +10,4 @@ namespace Application.Diagnostics
   {
     void Audit(string user, string action);
   }
-
-  public class NullLog : ILog
-  {
-    public void Audit(string user, string action)
-    {
-    }
-  }
 }
