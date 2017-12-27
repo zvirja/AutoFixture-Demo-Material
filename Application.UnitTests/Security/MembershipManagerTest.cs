@@ -14,11 +14,13 @@ namespace Application.UnitTests.Security
 {
   public class MembershipManagerTest
   {
-    [Theory, AutoNSubstituteData]
-    public void ShouldFailForNullId(MembershipManager sut, string password)
+    [Theory]
+    [InlineAutoNSubstituteData(null)]
+    [InlineAutoNSubstituteData("")]
+    public void ShouldFailForNullOrEmptyId(string userName, MembershipManager sut, string password)
     {
       // Act & Assert
-      sut.Invoking(s => s.TryLogin(null, password)).ShouldThrow<ArgumentNullException>();
+      sut.Invoking(s => s.TryLogin(userName, password)).ShouldThrow<ArgumentNullException>();
     }
 
     [Theory, AutoNSubstituteData]

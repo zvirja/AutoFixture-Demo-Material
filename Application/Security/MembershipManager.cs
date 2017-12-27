@@ -26,7 +26,7 @@ namespace Application.Security
 
     public bool TryLogin(string login, string password)
     {
-      if (login == null) throw new ArgumentNullException(nameof(login));
+      if (string.IsNullOrEmpty(login)) throw new ArgumentNullException(nameof(login));
       if (password == null) throw new ArgumentNullException(nameof(password));
 
       _log.Audit(login, "Try to login.");
