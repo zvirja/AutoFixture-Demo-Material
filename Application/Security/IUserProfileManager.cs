@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Security
 {
-  public interface IUserRepository
+  public interface IUserProfileManager
   {
-    User GetExistingUser(string userName);
-    void CreateUser(User user);
   }
 }
