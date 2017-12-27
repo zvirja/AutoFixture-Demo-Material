@@ -49,8 +49,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldLookupUserByLogin([Frozen] IUserRepository repo, MembershipManager sut, string login,
-      string password)
+    public void ShouldLookupUserByLogin([Frozen] IUserRepository repo, MembershipManager sut, string login, string password)
     {
       // Arrange
       // Act
@@ -61,8 +60,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldReturnFalseIfUserDoesNotExist([Frozen] IUserRepository repo, MembershipManager sut, string login,
-      string password)
+    public void ShouldReturnFalseIfUserDoesNotExist([Frozen] IUserRepository repo, MembershipManager sut, string login, string password)
     {
       // Arrange
       repo.GetExistingUser(login).ReturnsNull();
@@ -75,8 +73,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldReturnFalseIfPasswordIsInvalid([Frozen] IPasswordChecker passwordChecker, MembershipManager sut,
-      string login, string password)
+    public void ShouldReturnFalseIfPasswordIsInvalid([Frozen] IPasswordChecker passwordChecker, MembershipManager sut, string login, string password)
     {
       // Arrange
       passwordChecker.IsPasswordValid(Arg.Any<string>(), Arg.Any<User>()).Returns(false);
@@ -89,8 +86,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldLoginIfPasswordIsValid([Frozen] IUserRepository repo, [Frozen] IPasswordChecker passwordChecker,
-      MembershipManager sut, User user, string login, string password)
+    public void ShouldLoginIfPasswordIsValid([Frozen] IUserRepository repo, [Frozen] IPasswordChecker passwordChecker, MembershipManager sut, User user, string login, string password)
     {
       // Arrange
       repo.GetExistingUser(login).Returns(user);
@@ -104,8 +100,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldLogAuditIfLoginFailedDueToInvalidPass([Frozen] ILog log,
-      [Frozen] IPasswordChecker passwordChecker, [Greedy] MembershipManager sut, string login, string password)
+    public void ShouldLogAuditIfLoginFailedDueToInvalidPass([Frozen] ILog log, [Frozen] IPasswordChecker passwordChecker, [Greedy] MembershipManager sut, string login, string password)
     {
       // Arrange
       passwordChecker.IsPasswordValid(Arg.Any<string>(), Arg.Any<User>()).Returns(false);
@@ -118,8 +113,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldLogAuditIfLoginFailedDueToNonExistingUser([Frozen] ILog log, [Frozen] IUserRepository repo,
-      [Greedy] MembershipManager sut, string login, string password)
+    public void ShouldLogAuditIfLoginFailedDueToNonExistingUser([Frozen] ILog log, [Frozen] IUserRepository repo, [Greedy] MembershipManager sut, string login, string password)
     {
       // Arrange
       repo.GetExistingUser(Arg.Any<string>()).ReturnsNull();
@@ -132,8 +126,7 @@ namespace Application.UnitTests.Security
     }
 
     [Theory, AutoNSubstituteData]
-    public void ShouldLogAuditIfLoggedIn([Frozen] ILog log, [Frozen] IPasswordChecker passwordChecker,
-      [Greedy] MembershipManager sut, string login, string password)
+    public void ShouldLogAuditIfLoggedIn([Frozen] ILog log, [Frozen] IPasswordChecker passwordChecker, [Greedy] MembershipManager sut, string login, string password)
     {
       // Arrange
       passwordChecker.IsPasswordValid(Arg.Any<string>(), Arg.Any<User>()).Returns(true);
