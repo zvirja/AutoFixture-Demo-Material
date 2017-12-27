@@ -74,8 +74,9 @@
     <Compile Include="001_Primitives.cs" />
     <Compile Include="002_CustomTypes.cs" />
     <Compile Include="903_Customizations.cs" />
+    <Compile Include="003_FreezeInject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="003_XUnitIntegration.cs" />
+    <Compile Include="004_XUnitIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
