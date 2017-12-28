@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoFixture;
 using AutoFixture.Xunit2;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace AutoFixtureDemo
 {
   public class XUnitIntegration
   {
-    #region AutoDataDemo
+    #region AutoData Demo
 
     [Theory, AutoData]
     public void ShouldGenerateValuesInParameters(int number, Guid id, string name, TimeSpan duration)

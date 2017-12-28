@@ -1,25 +1,22 @@
 ﻿using System;
 using Application.Diagnostics;
-using Application.Eventing;
 
 namespace Application.Security
 {
   public class MembershipManager
   {
     private readonly IUserRepository _userRepo;
-    private readonly IEventEmitter _eventEmitter;
     private readonly IPasswordChecker _passwordChecker;
     private readonly ILog _log;
 
-    public MembershipManager(IUserRepository userRepo, IEventEmitter eventEmitter, IPasswordChecker passwordChecker)
-    : this(userRepo, eventEmitter, passwordChecker, new NullLog())
+    public MembershipManager(IUserRepository userRepo, IPasswordChecker passwordChecker)
+    : this(userRepo, passwordChecker, new NullLog())
     {
     }
 
-    public MembershipManager(IUserRepository userRepo, IEventEmitter eventEmitter, IPasswordChecker passwordChecker, ILog log)
+    public MembershipManager(IUserRepository userRepo, IPasswordChecker passwordChecker, ILog log)
     {
       _userRepo = userRepo ?? throw new ArgumentNullException(nameof(userRepo));
-      _eventEmitter = eventEmitter ?? throw new ArgumentNullException(nameof(eventEmitter));
       _passwordChecker = passwordChecker ?? throw new ArgumentNullException(nameof(passwordChecker));
       _log = log ?? throw new ArgumentNullException(nameof(log));
     }
@@ -35,7 +32,6 @@ namespace Application.Security
       if (user != null && _passwordChecker.IsPasswordValid(password, user))
       {
         _log.Audit(login, "Logged in.");
-        _eventEmitter.EmitUserLoggedIn(login);
         return true;
       }
 

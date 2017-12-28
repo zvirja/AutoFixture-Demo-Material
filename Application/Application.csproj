@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Diagnostics\ILog.cs" />
-    <Compile Include="Eventing\IEventEmitter.cs" />
     <Compile Include="Diagnostics\NullLog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoFixture;
 using Xunit;
 
@@ -70,18 +71,6 @@ namespace AutoFixtureDemo
 
     #region WrapperAndNestedNode
 
-    [Fact]
-    public void ShouldCreateNestedMembers()
-    {
-      var fixture = new Fixture();
-
-      var result = fixture.Create<WrappedNode<NodeWithCtor>>();
-
-      Assert.NotNull(result.WrappedValue);
-      Assert.NotNull(result.Owner);
-      Assert.NotEqual(TimeSpan.Zero, result.Duration);
-    }
-
     public class WrappedNode<T>
     {
       public T WrappedValue { get; }
@@ -95,6 +84,85 @@ namespace AutoFixtureDemo
         Owner = owner;
         Duration = duration;
       }
+    }
+
+    [Fact]
+    public void ShouldCreateNestedMembers()
+    {
+      var fixture = new Fixture();
+
+      var result = fixture.Create<WrappedNode<NodeWithCtor>>();
+
+      Assert.NotNull(result.WrappedValue);
+      Assert.NotNull(result.Owner);
+      Assert.NotEqual(TimeSpan.Zero, result.Duration);
+    }
+
+    #endregion
+
+    #region ComplexSample
+
+    public class Database
+    {
+      public string Name { get; }
+
+      public Database(string name)
+      {
+        Name = name;
+      }
+    }
+
+    public class Field
+    {
+      public string RawValue { get; set; }
+      public string Language { get; set; }
+      public int Version { get; set; }
+    }
+
+    private class Item
+    {
+      public IReadOnlyCollection<Field> Fields { get; }
+      public Database Database { get; }
+      public Guid Id { get; }
+      public Guid TemplateId { get; }
+
+      public Item(Guid id, Guid templateId, IReadOnlyCollection<Field> fields, Database database)
+      {
+        Id = id;
+        TemplateId = templateId;
+        Fields = fields;
+        Database = database;
+      }
+    }
+
+    [Fact]
+    public void ComplexFixtureTest()
+    {
+      var fixture = new Fixture();
+
+      var item = fixture.Create<Item>();
+    }
+
+    #endregion
+
+    #region InterfacesAndAbstractClasses
+
+    public interface ICustomInterface
+    {
+      string Value { get; }
+    }
+
+    public abstract class AbstractClass
+    {
+      public abstract string Value { get; }
+    }
+
+    [Fact]
+    public void CannotResolveInterfaceAndAbstractClasses()
+    {
+      var fixture = new Fixture();
+
+      //fixture.Create<ICustomInterface>();
     }
 
     #endregion

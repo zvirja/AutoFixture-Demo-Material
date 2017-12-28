@@ -13,6 +13,7 @@ namespace AutoFixtureDemo
       var fixture = new Fixture();
 
       var number = fixture.Create<int>();
+      var str = fixture.Create<string>();
       var guid = fixture.Create<Guid>();
       var datetime = fixture.Create<DateTime>();
       var uri = fixture.Create<Uri>();
